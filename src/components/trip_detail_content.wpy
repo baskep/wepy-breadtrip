@@ -1,0 +1,105 @@
+<style lang="less">
+
+</style>
+
+<template>
+ <view class="trip-header-info">
+    <view class="th-user-info">
+      <image
+        class="th-user-avatar"        
+        src="{{tripDetail.cover_image}}"
+        lazy-load="true"
+      >
+      </image>
+      <view class="th-user-name">
+        by <text>{{tripDetail.user.name}}</text>
+      </view>
+      <view class="th-title">
+        <text>{{tripDetail.name}}</text>
+      </view>
+    </view>
+
+    <view class="th-user-count">
+      <view class="user-count-item">
+        <text>{{tripDetail.first_day}}</text>
+        <text>{{tripDetail.day_count}}天</text>
+      </view>
+       <view class="user-count-item">
+        <text>里程</text>
+        <text>{{tripDetail.mileage}}km</text>
+      </view>
+       <view class="user-count-item">
+        <text>喜欢</text>
+        <text>{{tripDetail.recommendations}}</text>
+      </view>
+       <view class="user-count-item">
+        <text>打赏</text>
+        <text>{{tripDetail.reward_count}}</text>
+      </view>
+    </view>
+
+    <view class="trip-simple-record">
+      <view class="tr-record-detail">
+        <view class="tr-record-item">
+          <image src="../images/flight.png"></image>
+          <text>{{tripDetail.poi_infos_count.flight}}航班</text>
+        </view>
+        <view class="tr-record-item">
+          <image src="../images/hotel.png"></image>
+          <text>{{tripDetail.poi_infos_count.hotel}}旅店</text>
+        </view>
+        <view class="tr-record-item">
+          <image src="../images/site.png"></image>
+          <text>{{tripDetail.poi_infos_count.sights}}景点</text>
+        </view>
+        <view class="tr-record-item">
+          <image src="../images/shop.png"></image>
+          <text>{{tripDetail.poi_infos_count.mall}}购物</text>
+        </view>
+      </view>
+
+      <view class="tr-record-city"> 
+					<repeat for="{{tripDetail.covered_countries}}" key="covered_countrie.id" index="index" item="covered_country">
+          <image src="{{covered_country.icon}}"></image>
+        </repeat>
+      </view>
+
+      <view class="tr-view-schedule">
+        <text>查看线路日程</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from "wepy";
+
+  import api from "../api/api"
+  import util from "../util/util";
+  import tip from '../util/tip'
+
+  const formatTime = util.formatTime;
+  const formatMileage = util.formatMileage;
+
+  export default class TripDetailHeader extends wepy.component {
+    components = {}
+
+  	props = {
+			tripDetail: {
+				default: {},
+				type: Object
+			}
+    }
+
+    data = {}
+
+    computed = {}
+
+    methods = {}
+
+    events = {}
+
+    onLoad () {}
+  }
+
+</script>

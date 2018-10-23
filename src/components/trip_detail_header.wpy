@@ -1,0 +1,216 @@
+<style lang="less">
+	.trip-header-info {
+		margin: 40rpx;
+		.th-user-info {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		.th-user-avatar {
+			width: 128rpx;
+			height: 128rpx;
+			border-radius: 50%;
+		}
+		.th-user-name {
+			margin: 20rpx 0;
+			font-size: 24rpx;
+			color: #999;
+		}
+		.th-title {
+			margin-bottom: 40rpx;
+			font-size: 40rpx;
+			font-weight: 700;
+			color: #4a4a4a;
+		}
+		.th-user-count {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 24rpx;
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 200%;
+				height: 1px;
+				transform: scale(0.5);
+				transform-origin: left top;
+				background: #999;
+			}
+		}
+		.user-count-item {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			margin-top: 40rpx;
+			border-left: 1px dashed #999;
+			width: 25%;
+			color: #999;
+			&:first-child {
+				border: 0;
+			}
+		}
+		.trip-simple-record {
+			position: relative;
+			margin: 40rpx 0;
+			border-top: 3px solid #4abdcc;
+			background: #fff;
+		}
+		.tr-record-detail {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			margin: 20rpx;
+			view {
+				width: 50%;
+			}
+		}
+		.tr-record-item {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			margin: 20rpx 0;
+			image {
+				width: 58rpx;
+				height: 58rpx;
+			}
+			text {		
+				margin-left: 10rpx;
+				font-size: 32rpx;
+				color: #5c5c5c;
+			}
+		}
+		.tr-record-city {
+			margin: 0 0 20rpx 20rpx;
+			font-size: 36rpx;
+			font-weight: 300;
+			white-space: nowrap;
+			color: #5c5c5c;
+			overflow: hidden;
+			image {
+				float: left;
+				margin-right: 10rpx;
+				border-radius: 50%;
+				width: 50rpx;
+				height: 50rpx;
+			}
+		}
+		.tr-view-schedule {
+			width: 100%;
+			height: 56rpx;
+			font-size: 28rpx;
+			line-height: 56rpx;
+			box-shadow: 0 6rpx #c9c9c9;
+			text-align: center;
+			background: #f2f2f2;
+			color: #999;
+		}
+	}
+</style>
+
+<template>
+ <view class="trip-header-info">
+    <view class="th-user-info">
+      <image
+        class="th-user-avatar"        
+        src="{{tripDetail.cover_image}}"
+        lazy-load="true"
+      >
+      </image>
+      <view class="th-user-name">
+        by <text>{{tripDetail.user.name}}</text>
+      </view>
+      <view class="th-title">
+        <text>{{tripDetail.name}}</text>
+      </view>
+    </view>
+
+    <view class="th-user-count">
+      <view class="user-count-item">
+        <text>{{tripDetail.first_day}}</text>
+        <text>{{tripDetail.day_count}}天</text>
+      </view>
+       <view class="user-count-item">
+        <text>里程</text>
+        <text>{{tripDetail.mileage}}km</text>
+      </view>
+       <view class="user-count-item">
+        <text>喜欢</text>
+        <text>{{tripDetail.recommendations}}</text>
+      </view>
+       <view class="user-count-item">
+        <text>打赏</text>
+        <text>{{tripDetail.reward_count}}</text>
+      </view>
+    </view>
+
+    <view class="trip-simple-record">
+      <view class="tr-record-detail">
+        <view class="tr-record-item">
+          <image src="../images/flight.png"></image>
+          <text>{{tripDetail.poi_infos_count.flight}}航班</text>
+        </view>
+        <view class="tr-record-item">
+          <image src="../images/hotel.png"></image>
+          <text>{{tripDetail.poi_infos_count.hotel}}旅店</text>
+        </view>
+        <view class="tr-record-item">
+          <image src="../images/site.png"></image>
+          <text>{{tripDetail.poi_infos_count.sights}}景点</text>
+        </view>
+        <view class="tr-record-item">
+          <image src="../images/shop.png"></image>
+          <text>{{tripDetail.poi_infos_count.mall}}购物</text>
+        </view>
+      </view>
+
+      <view class="tr-record-city"> 
+					<repeat for="{{tripDetail.covered_countries}}" key="covered_countrie.id" index="index" item="covered_country">
+          <image src="{{covered_country.icon}}"></image>
+        </repeat>
+      </view>
+
+      <view class="tr-view-schedule">
+        <text>查看线路日程</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from "wepy";
+
+  import api from "../api/api"
+  import util from "../util/util";
+  import tip from '../util/tip'
+
+  const formatTime = util.formatTime;
+  const formatMileage = util.formatMileage;
+
+  export default class TripDetailHeader extends wepy.component {
+    components = {}
+
+  	props = {
+			tripDetail: {
+				default: {},
+				type: Object
+			}
+    }
+
+    data = {}
+
+    computed = {}
+
+    methods = {}
+
+    events = {}
+
+    onLoad () {}
+  }
+
+</script>

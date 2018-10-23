@@ -1,0 +1,164 @@
+<style lang="less">
+  .trip-item {
+    position: relative;
+    margin: 20rpx;
+    height: 352rpx;
+    .trip-item-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 352rpx;
+    }
+    .trip-item-info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      padding: 0 30rpx;
+      height: 100%;
+      width: 100%;
+      background: transparent;
+      color: #fff;
+      z-index: 2;
+    }
+    .trip-item-title  {
+      text {
+      display: -webkit-box;
+      margin-top: 15px;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-weight: 600;
+      font-size: 36rpx;
+      line-height: 1.2;
+      text-shadow: 1px 1px rgba(0,0,0,.4);
+      overflow: hidden;
+      }
+    }
+    .trip-item-basic {
+      position: relative;
+      margin-top: 6px;
+      z-index: 2;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0 5px 0 0;
+        width: 3px;
+        height: 100%;
+        border-radius: 1px;
+        background: #4abdcc;
+      }
+      view {
+        margin-left: 20rpx;
+        font-size: 24rpx;
+      }
+      text {
+        margin-left: 20rpx;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+    .trip-author-info {
+      position: absolute;
+      left: 0;
+      bottom: 11px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2px 15px;
+      width: 100%;
+      height: 68rpx;
+      color: #fff;
+      z-index: 2;
+      .author-cover {
+        width: 60rpx;
+        height: 60rpx;
+        margin-bottom: 0;
+        background-size: 60rpx 60rpx;
+        border-radius: 60rpx;
+			}
+			text {
+				margin: 0 20rpx;
+				font-size: 24rpx;  
+			}
+    }
+  }
+  .mask{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 600rpx;
+    height: 352rpx;
+    background-color: rgba(255, 255, 255, 0);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+    border-top-left-radius: 8rpx;
+    border-bottom-left-radius: 8rpx;
+  }
+</style>
+
+<template>
+	<view>
+		<repeat for="{{trips}}" key="index" index="index" item="trip">
+			<view class="trip-item" data-id="{{trip.id}}" data-name="{{trip.name}}" @tap="viewTripDetail">
+				<image class="trip-item-img" src="{{trip.cover_image_w640}}" mode="aspectFill" lazy-load="true" ></image>
+				<view class="trip-item-info">
+					<view class="trip-item-title">
+						<text>{{trip.name}}</text>
+					</view>
+					<view class="trip-item-basic">
+						<view>
+							<text>{{trip.date_added}}</text>
+							<text>{{trip.day_count}}天</text>
+							<text>{{trip.view_count}}次浏览</text>
+						</view>
+						<view>
+							<text>{{trip.popular_place_str}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="trip-author-info">
+					<image class="author-cover" src="{{trip.user.avatar_l}}" ></image>
+					<text>{{trip.user.name}}</text>
+				</view>
+				<view class="mask"></view>
+			</view>
+		</repeat>
+	</view>    
+</template>
+
+<script>
+  import wepy from "wepy";
+
+  export default class TripItem extends wepy.component {
+    props = {
+			trips: {
+				type: Array,
+				default: []
+			}
+    }
+    components = {}
+
+    data = {}
+
+    computed = {}
+
+    methods = {
+      viewTripDetail (e) {
+        const dataset = e.currentTarget.dataset;
+        wepy.navigateTo({
+          url: `/pages/trip_detail?id=${dataset.id}&name=${dataset.name}`
+        });
+      }
+    }
+
+    events = {}
+
+    onLoad () {}
+  }
+
+</script>

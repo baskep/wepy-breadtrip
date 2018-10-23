@@ -1,0 +1,54 @@
+<style lang="less">
+
+</style>
+
+<template>
+		<scroll-view style="height: {{ windowHeight }}px; width: {{ windowWidth }}px;"  scroll-y="true" lower-threshold="800">
+			<tripDetailHeader :tripDetail.sync="tripDetail" wx:if="{{loading}}"></tripDetailHeader>
+		</scroll-view>
+</template>
+
+<script>
+	import wepy from "wepy";
+
+	import tripDetailHeader from "../components/trip_detail_header";
+
+	import api from "../api/api"
+	import util from "../util/util";
+	import tip from '../util/tip'
+
+	const formatTime = util.formatTime;
+	const formatMileage = util.formatMileage;
+
+	export default class TripDetail extends wepy.page {
+		components = {
+			tripDetailHeader: tripDetailHeader
+		}
+
+		data = {
+			tripDetail: {},
+			loading: false
+		}
+
+		methods = {}
+
+		onLoad (options) {
+			const self = this;
+			const id = options.id;
+			tip.loading();
+			api.getTripInfoByID({
+				query: {
+					tripId: id
+				},
+			}).then(function (res) {
+					let tripData = res.data;
+					tripData.first_day = formatTime(new Date(tripData.first_day), 1);
+					tripData.mileage = formatMileage(tripData.mileage);
+					self.tripDetail = tripData;
+					self.loading = true;
+					self.$apply();
+					tip.loaded();
+			})
+		}
+	}
+</script>
