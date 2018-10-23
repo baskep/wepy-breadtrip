@@ -176,7 +176,7 @@
       </view>
 
       <view class="tr-view-schedule">
-        <text>查看线路日程</text>
+        <text @tap="viewAllPlace({{tripDetail.id}})">查看线路日程</text>
       </view>
     </view>
   </view>
@@ -206,7 +206,13 @@
 
     computed = {}
 
-    methods = {}
+    methods = {
+			viewAllPlace (id) {
+				wepy.navigateTo({
+          url: `/pages/trip_place?id=${id}`
+				});
+			}
+		}
 
     events = {}
 

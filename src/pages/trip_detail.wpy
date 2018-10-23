@@ -1,10 +1,10 @@
 <style lang="less">
-
 </style>
 
 <template>
-		<scroll-view style="height: {{ windowHeight }}px; width: {{ windowWidth }}px;"  scroll-y="true" lower-threshold="800">
-			<tripDetailHeader :tripDetail.sync="tripDetail" wx:if="{{loading}}"></tripDetailHeader>
+		<scroll-view wx:if="{{loading}}">
+			<tripDetailHeader :tripDetail.sync="tripDetail"></tripDetailHeader>
+			<tripDetailContent :tripDetail.sync="tripDetail"></tripDetailContent>
 		</scroll-view>
 </template>
 
@@ -12,6 +12,7 @@
 	import wepy from "wepy";
 
 	import tripDetailHeader from "../components/trip_detail_header";
+	import tripDetailContent from "../components/trip_detail_content";
 
 	import api from "../api/api"
 	import util from "../util/util";
@@ -22,11 +23,13 @@
 
 	export default class TripDetail extends wepy.page {
 		components = {
-			tripDetailHeader: tripDetailHeader
+			tripDetailHeader: tripDetailHeader,
+			tripDetailContent: tripDetailContent
 		}
 
 		data = {
 			tripDetail: {},
+			days: [],
 			loading: false
 		}
 
@@ -45,10 +48,11 @@
 					tripData.first_day = formatTime(new Date(tripData.first_day), 1);
 					tripData.mileage = formatMileage(tripData.mileage);
 					self.tripDetail = tripData;
+					self.days = tripData.days;
 					self.loading = true;
 					self.$apply();
 					tip.loaded();
-			})
+			});
 		}
 	}
 </script>

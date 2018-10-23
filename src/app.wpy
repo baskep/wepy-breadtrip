@@ -12,7 +12,8 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
-      'pages/trip_detail'
+      'pages/trip_detail',
+      'pages/trip_place',
     ],
     window: {
       backgroundTextStyle: 'dark',

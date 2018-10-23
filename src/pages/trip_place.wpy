@@ -1,0 +1,42 @@
+<style lang="less">
+</style>
+
+<template>
+		<scroll-view wx:if="{{loading}}">
+		</scroll-view>
+</template>
+
+<script>
+	import wepy from "wepy";
+
+	import api from "../api/api"
+	import tip from '../util/tip'
+
+	export default class TripDetail extends wepy.page {
+		components = {}
+
+		data = {
+			tripPlaceInfo: [],
+			loading: false
+		}
+
+		methods = {}
+
+		onLoad (options) {
+			const self = this;
+			const id = options.id;
+      tip.loading();
+      api.getPlacesByID({
+				query: {
+					tripId: id
+				}
+      }).then(function (res) {
+				self.tripPlaceInfo = res.data;
+				console.log(self.tripPlaceInfo);
+				self.loading = true;
+				self.$apply();
+        tip.loaded();
+      });
+		}
+	}
+</script>

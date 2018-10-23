@@ -2,7 +2,7 @@ const apiURL = 'http://api.breadtrip.com';
 
 import { wxRequest } from "@/util/util";
 
-// 获取热门旅行日记列表
+// 获取热门旅行日记
 const getHotTripList = (params) => {
   return wxRequest(params, `${apiURL}/v2/index/`);
 };
@@ -15,11 +15,16 @@ const getPlaceInfoByID = (params) => {
 const getPlacePOIByID = (params) => {
   return wxRequest(params, `${apiURL}/destination/place/${params.query.type}/${params.query.id}/pois/${params.query.poiType}/`);
 };
+// 通过ID获取旅行日记信息
 const getTripInfoByID = (params) => {
   return wxRequest(params, `${apiURL}/trips/${params.query.tripId}/waypoints/`);
 };
 const getPlaceTripByID = (params) => {
   return wxRequest(params, `${apiURL}/destination/place/${params.query.type}/${params.query.id}/trips/`);
+};
+// 通过ID获取所有旅行地点
+const getPlacesByID = (params) => {
+  return wxRequest(params, `${apiURL}/trips/${params.query.tripId}/schedule/`);
 };
 const getUserInfoByID = (params) => {
   return wxRequest(params, `${apiURL}/users/${params.query.userId}/v2`);
@@ -41,4 +46,5 @@ module.exports = {
   getUserInfoByID,
   getWaypointInfoByID,
   getWaypointReplyByID,
+  getPlacesByID
 };
