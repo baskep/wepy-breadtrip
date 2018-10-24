@@ -1,8 +1,77 @@
 <style lang="less">
+ .day-marker {
+		color: #a8915e;
+		font-size: 28rpx;
+		line-height: 32rpx;
+		height: 32rpx;
+	}
+	.circle {
+    display: inline-block;
+    width: 16rpx;
+    height: 16rpx;
+    background-color:#fff;
+    border-radius: 16rpx;
+    border: 8rpx solid #e7ddc6;
+    margin: 0 8rpx;
+    vertical-align: text-top;
+  }
+	.wp-sep {
+    background:#e7ddc6;
+    height: 36rpx;
+    margin-left: 20rpx;
+    width: 8rpx;
+	}
+	.trip-place-wrap {
+		margin: 32rpx 40rpx 0;
+		.trip-place-content {
+			border-left: 8rpx solid #e7ddc6;
+			margin-left: 20rpx;
+		}
+		.trip-place-list {
+			margin-left: 40rpx;
+			margin-bottom: 40rpx;
+			height: 188rpx;
+			box-sizing: border-box;
+			background: red;
+			overflow: hidden;
+		}
+		.trip-palce-divider {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-left: 46rpx;
+			height: 80rpx;
+			.divider {
+				width: 45.5%;
+				height: 1px;
+				background: #e7ddc6;
+			}
+		}
+	}
 </style>
 
 <template>
-		<scroll-view wx:if="{{loading}}">
+		<scroll-view>
+			<view class="trip-place-wrap">
+				<view class="trip-place-item">	
+					<view class="day-marker">
+						<text class="circle"></text>
+						第 1 天 2018.09.27
+					</view>
+					<view class="wp-sep"></view>
+					<view class="trip-place-content">
+						<view class="trip-place-list">
+
+						</view>
+						<view class="trip-palce-divider">
+							<view class="divider"></view>
+							<view class="sun" style="background: url('../images/sun.png') no-repeat; background-size: cover; width: 40rpx; height: 40rpx"></view>
+							<view class="divider"></view>
+						</view>
+					</view>
+				</view>
+
+			</view>
 		</scroll-view>
 </template>
 
@@ -23,20 +92,20 @@
 		methods = {}
 
 		onLoad (options) {
-			const self = this;
-			const id = options.id;
-      tip.loading();
-      api.getPlacesByID({
-				query: {
-					tripId: id
-				}
-      }).then(function (res) {
-				self.tripPlaceInfo = res.data;
-				console.log(self.tripPlaceInfo);
-				self.loading = true;
-				self.$apply();
-        tip.loaded();
-      });
+			// const self = this;
+			// const id = options.id;
+      // tip.loading();
+      // api.getPlacesByID({
+			// 	query: {
+			// 		tripId: id
+			// 	}
+      // }).then(function (res) {
+			// 	self.tripPlaceInfo = res.data;
+			// 	console.log(self.tripPlaceInfo);
+			// 	self.loading = true;
+			// 	self.$apply();
+      //   tip.loaded();
+      // });
 		}
 	}
 </script>

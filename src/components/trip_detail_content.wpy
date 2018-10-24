@@ -15,6 +15,9 @@
       background-color: #fff;
       color: #5c5c5c;
     }
+    .trip-day-image {
+      width: 100%;
+    }
   }
   .trip-day-footer {
     padding: 20rpx 0;
@@ -53,9 +56,6 @@
       margin-right: 10rpx;
       width: 16rpx;
       height: 24rpx;
-    }
-    .trip-day-image {
-      width: 100%;
     }
   }
   .day-marker {
@@ -101,7 +101,7 @@
     <view class="trip-detail-day">
       <repeat for="{{day.waypoints}}" key="index" index="index" item="waypoint">
         <view class="trip-day-item">  
-          <image class="trip-day-image" src="{{waypoint.photo_webtrip}}" wx:if="{{waypoint.photo_webtrip}}"></image>
+          <view style="background: url({{waypoint.photo_webtrip}}) no-repeat; background-size: cover; background-position: center center; height: 680rpx" wx:if="{{waypoint.photo_webtrip}}"></view>
           <text class="trip-day-content">{{waypoint.text}}</text>
           <view class="trip-day-footer">
             <view class="time-info">
