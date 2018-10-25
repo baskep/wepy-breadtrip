@@ -2,7 +2,8 @@
 </style>
 
 <template>
-  <scroll-view scroll-y="true" style="width: {{windowWidth}}; height: {{windowHeight}}px" bindscrolltolower="getData" lower-threshold="800">
+  <scroll-view scroll-y="true" style="width: {{windowWidth}}; height: {{windowHeight}}px" bindscrolltolower="getData"
+    lower-threshold="800">
     <tripItem :trips.sync="trips"></tripItem>
   </scroll-view>
 </template>
@@ -39,14 +40,14 @@
 
     events = {}
 
-    onLoad () {
+    onLoad() {
       const userInfo = wepy.getSystemInfoSync();
       this.windowWidth = userInfo.windowWidth;
       this.windowHeight = userInfo.windowHeight;
       this.getData();
     }
 
-    getData (e, needRefresh) {
+    getData(e, needRefresh) {
       const self = this;
       const data = {
         next_start: self.start,
@@ -71,5 +72,4 @@
       });
     }
   }
-
 </script>

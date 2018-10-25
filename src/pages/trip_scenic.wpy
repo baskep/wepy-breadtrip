@@ -1,0 +1,19 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view>233</view>
+</template>
+
+<script>
+  import wepy from "wepy";
+
+  export default class TirpScenic extends wepy.page {
+    onLoad(options) {
+			const self = this;
+      const id = options.id;
+      console.log(id);
+    }
+  }
+</script>

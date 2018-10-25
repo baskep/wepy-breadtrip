@@ -3,13 +3,13 @@
     margin: 0 40rpx;
   }
   .trip-day-item {
-    box-shadow:0 4rpx #c9c9c9;
+    box-shadow: 0 4rpx #c9c9c9;
     background: #fff;
     .trip-day-content {
       display: block;
       margin: 0 20rpx;
-      padding:20rpx 0;
-      font-size: 28rpx; 
+      padding: 20rpx 0;
+      font-size: 28rpx;
       word-break: break-word;
       white-space: pre-line;
       background-color: #fff;
@@ -69,14 +69,15 @@
     display: inline-block;
     width: 16rpx;
     height: 16rpx;
-    background-color:#fff;
+    background-color: #fff;
     border-radius: 16rpx;
     border: 8rpx solid #e7ddc6;
     margin: 0 8rpx;
     vertical-align: text-top;
   }
+
   .wp-sep {
-    background:#e7ddc6;
+    background: #e7ddc6;
     height: 36rpx;
     margin: 4rpx 0rpx 0 20rpx;
     width: 8rpx;
@@ -100,14 +101,15 @@
     </view>
     <view class="trip-detail-day">
       <repeat for="{{day.waypoints}}" key="index" index="index" item="waypoint">
-        <view class="trip-day-item">  
-          <view style="background: url({{waypoint.photo_webtrip}}) no-repeat; background-size: cover; background-position: center center; height: 680rpx" wx:if="{{waypoint.photo_webtrip}}"></view>
+        <view class="trip-day-item">
+          <view style="background: url({{waypoint.photo_webtrip}}) no-repeat; background-size: cover; background-position: center center; height: 680rpx"
+            wx:if="{{waypoint.photo_webtrip}}"></view>
           <text class="trip-day-content">{{waypoint.text}}</text>
           <view class="trip-day-footer">
             <view class="time-info">
               <image class="time-img" src="../../images/time.png" lazy-load="true"></image>
               <text class="time">{{waypoint.local_time}}</text>
-            </view> 
+            </view>
             <view wx:if="{{waypoint.country}}" class="city">
               <image class="city-img" src="../../images/location.png"></image>
               {{waypoint.country}} {{waypoint.city}}
@@ -133,11 +135,11 @@
   export default class TripDetailContent extends wepy.component {
     components = {}
 
-  	props = {
+    props = {
       tripDetail: {
-				default: {},
-				type: Object
-			}
+        default: {},
+        type: Object
+      }
     }
 
     data = {}
@@ -148,8 +150,6 @@
 
     events = {}
 
-    onLoad () {}
+    onLoad() {}
   }
-
 </script>
-

@@ -2,10 +2,10 @@
 </style>
 
 <template>
-		<scroll-view wx:if="{{loading}}">
-			<tripDetailHeader :tripDetail.sync="tripDetail"></tripDetailHeader>
-			<tripDetailContent :tripDetail.sync="tripDetail"></tripDetailContent>
-		</scroll-view>
+	<scroll-view wx:if="{{loading}}">
+		<tripDetailHeader :tripDetail.sync="tripDetail"></tripDetailHeader>
+		<tripDetailContent :tripDetail.sync="tripDetail"></tripDetailContent>
+	</scroll-view>
 </template>
 
 <script>
@@ -35,7 +35,7 @@
 
 		methods = {}
 
-		onLoad (options) {
+		onLoad(options) {
 			const self = this;
 			const id = options.id;
 			tip.loading();
@@ -44,14 +44,14 @@
 					tripId: id
 				},
 			}).then(function (res) {
-					let tripData = res.data;
-					tripData.first_day = formatTime(new Date(tripData.first_day), 1);
-					tripData.mileage = formatMileage(tripData.mileage);
-					self.tripDetail = tripData;
-					self.days = tripData.days;
-					self.loading = true;
-					self.$apply();
-					tip.loaded();
+				let tripData = res.data;
+				tripData.first_day = formatTime(new Date(tripData.first_day), 1);
+				tripData.mileage = formatMileage(tripData.mileage);
+				self.tripDetail = tripData;
+				self.days = tripData.days;
+				self.loading = true;
+				self.$apply();
+				tip.loaded();
 			});
 		}
 	}

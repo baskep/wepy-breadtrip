@@ -1,5 +1,5 @@
 <style lang="less">
- .day-marker {
+	.day-marker {
 		height: 32rpx;
 		line-height: 32rpx;
 		font-size: 28rpx;
@@ -9,17 +9,17 @@
 		display: inline-block;
 		margin: 0 8rpx;
 		border: 8rpx solid #e7ddc6;
-    border-radius: 16rpx;
-    width: 16rpx;
-    height: 16rpx;
+		border-radius: 16rpx;
+		width: 16rpx;
+		height: 16rpx;
 		vertical-align: text-top;
-    background-color:#fff;
-  }
+		background-color: #fff;
+	}
 	.wp-sep {
 		margin-left: 20rpx;
 		width: 8rpx;
-    height: 36rpx;
-    background:#e7ddc6;
+		height: 36rpx;
+		background: #e7ddc6;
 	}
 	.trip-place-wrap {
 		margin: 32rpx 40rpx 0;
@@ -29,14 +29,13 @@
 		}
 		.trip-place-list {
 			margin-left: 40rpx;
-			margin-bottom: 40rpx; // 188rpx
 			.line {
-				margin-left:2.5%;
+				margin-left: 2.5%;
 				border-bottom: 1px solid #e7e7e7;
 				height: 1px;
 				width: 190%;
 				transform: scale(.5);
-    		transform-origin: left top;
+				transform-origin: left top;
 			}
 			.line:last-child {
 				margin-left: 0;
@@ -63,7 +62,7 @@
 				.arrow-top image {
 					margin-right: 30rpx;
 					width: 26rpx;
-    			height: 16rpx;
+					height: 16rpx;
 				}
 			}
 			.trip-area-wrap {
@@ -89,6 +88,12 @@
 					height: 24rpx;
 				}
 			}
+			.trip-list-detail {
+				margin-bottom: 40rpx;
+			}
+			.trip-list-detail:last-child {
+				margin-bottom: 0;
+			}
 		}
 		.trip-palce-divider {
 			display: flex;
@@ -106,40 +111,44 @@
 </style>
 
 <template>
-		<scroll-view>
-			<view class="trip-place-wrap">
-				<view class="trip-place-item">	
+	<scroll-view wx:if={{loading}}>
+		<view class="trip-place-wrap">
+			<repeat for="{{tripPlaceInfo}}" key="index" index="index" item="tripDay">
+				<view class="trip-place-item">
 					<view class="day-marker">
 						<text class="circle"></text>
-						第 1 天 2018.09.27
+						{{tripDay.date}}
 					</view>
 					<view class="wp-sep"></view>
 					<view class="trip-place-content">
 						<view class="trip-place-list">
-							<view class="trip-list-detail">
-								<view class="trip-list-city">
-									<view class="trip-city-info">			
-										<image src="../images/city.png"></image>
-										<text>格雷普韦恩</text>
-									</view>
-									<view class="arrow-top">
-										<image src="../images/up.png"></image>
-									</view>
-								</view>
-								<view class="trip-area-wrap">
-									<view class="trip-list-area">
-										<view class="trip-area-info">
-											<image src="../images/road_sign.png"></image>
-											<text>San Isidro 19</text>
+							<repeat wx:if="tripDay.places" for={{tripDay.places}} key="index" index="index" item="place">
+								<view class="trip-list-detail">
+									<view class="trip-list-city">
+										<view class="trip-city-info">
+											<image src="../images/city.png"></image>
+											<text>{{place.place.name}}</text>
 										</view>
-										<view class="arrow-right">
-											<image src="../images/right.png"></image>
+										<view class="arrow-top">
+											<image src="../images/up.png"></image>
 										</view>
 									</view>
-									<view class="line"></view>
+									<view class="trip-area-wrap">
+										<repeat wx:if="place.pois" for={{place.pois}} key="index" index="index" item="poi">
+											<view class="trip-list-area">
+												<view class="trip-area-info">
+													<image src="../images/road_sign.png"></image>
+													<text>{{poi.name}}</text>
+												</view>
+												<view class="arrow-right">
+													<image src="../images/right.png" @tap="viewScenic({{poi.id}})"></image>
+												</view>
+											</view>
+											<view class="line"></view>
+										</repeat>
+									</view>
 								</view>
-							</view>
-							
+							</repeat>
 						</view>
 						<view class="trip-palce-divider">
 							<view class="divider"></view>
@@ -148,15 +157,19 @@
 						</view>
 					</view>
 				</view>
-			</view>
-		</scroll-view>
+			</repeat>
+		</view>
+	</scroll-view>
 </template>
 
 <script>
 	import wepy from "wepy";
 
-	import api from "../api/api"
-	import tip from '../util/tip'
+	import api from "../api/api";
+	import util from "../util/util";
+	import tip from '../util/tip';
+
+	const formatTime = util.formatTime;
 
 	export default class TripDetail extends wepy.page {
 		components = {}
@@ -166,23 +179,32 @@
 			loading: false
 		}
 
-		methods = {}
+		methods = {
+			viewScenic(id) {
+				wx.navigateTo({
+					url: `/pages/trip_scenic?id=${id}`
+				});
+			}
+		}
 
-		onLoad (options) {
-			// const self = this;
-			// const id = options.id;
-      // tip.loading();
-      // api.getPlacesByID({
-			// 	query: {
-			// 		tripId: id
-			// 	}
-      // }).then(function (res) {
-			// 	self.tripPlaceInfo = res.data;
-			// 	console.log(self.tripPlaceInfo);
-			// 	self.loading = true;
-			// 	self.$apply();
-      //   tip.loaded();
-      // });
+		onLoad(options) {
+			const self = this;
+			const id = options.id;
+			tip.loading();
+			api.getPlacesByID({
+				query: {
+					tripId: 2387386502
+				}
+			}).then(function (res) {
+				let result = res.data;
+				result.map((item) => {
+					item.date = formatTime(new Date(item.date), 1);
+				});
+				self.tripPlaceInfo = result;
+				self.loading = true;
+				self.$apply();
+				tip.loaded();
+			});
 		}
 	}
 </script>
