@@ -9,8 +9,9 @@ const getHotTripList = (params) => {
 const getExplorePlaceList = (params) => {
   return wxRequest(params, `${apiURL}/destination/v3/`);
 };
+// 通过ID获取地点相关信息
 const getPlaceInfoByID = (params) => {
-  return wxRequest(params, `${apiURL}/destination/place/${params.query.type}/${params.query.id}/`);
+  return wxRequest(params, `${apiURL}/destination/place/5/${params.query.id}/`);
 };
 const getPlacePOIByID = (params) => {
   return wxRequest(params, `${apiURL}/destination/place/${params.query.type}/${params.query.id}/pois/${params.query.poiType}/`);
