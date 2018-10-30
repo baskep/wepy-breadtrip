@@ -13,6 +13,10 @@ const getExplorePlaceList = (params) => {
 const getPlaceInfoByID = (params) => {
   return wxRequest(params, `${apiURL}/destination/place/5/${params.query.id}/`);
 };
+// 通过ID获取地点相关tips信息
+const getPlaceTipsByID = (params) => {
+  return wxRequest(params, `${apiURL}/place/pois/${params.query.id}/impressions/`);
+};
 const getPlacePOIByID = (params) => {
   return wxRequest(params, `${apiURL}/destination/place/${params.query.type}/${params.query.id}/pois/${params.query.poiType}/`);
 };
@@ -47,5 +51,6 @@ module.exports = {
   getUserInfoByID,
   getWaypointInfoByID,
   getWaypointReplyByID,
-  getPlacesByID
+  getPlacesByID,
+  getPlaceTipsByID
 };

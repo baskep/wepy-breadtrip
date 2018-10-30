@@ -3,6 +3,7 @@
     .trip-scenic-header {
       position: relative;
       height: 440rpx;
+
       .mask-top {
         position: absolute;
         padding-bottom: 20%;
@@ -13,6 +14,7 @@
         background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .4)), to(transparent));
         background-image: linear-gradient(180deg, rgba(0, 0, 0, .4), transparent);
       }
+
       .mask-bottom {
         position: absolute;
         padding-bottom: 31%;
@@ -24,28 +26,11 @@
         background-image: linear-gradient(0deg, rgba(0, 0, 0, .15), transparent);
       }
     }
-    .tc-header-icon {
-      position: absolute;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100rpx;
-      bottom: 39rpx;
-      right: 30rpx;
-      opacity: .8;
-      image {
-        width: 32rpx;
-        height: 29rpx;
-      }
-      text {
-        color: #fff;
-        font-size: 24rpx;
-      }
-    }
     .ts-info-item {
       position: relative;
       padding-top: 30rpx;
       padding-bottom: 60rpx;
+
       &::after {
         content: "";
         position: absolute;
@@ -62,16 +47,19 @@
         transform: scale(.5);
         transform-origin: left top;
       }
+
       &:last-child::after {
         content: "";
         width: 0;
         height: 0;
       }
     }
+
     .trip-scenic-intro {
       position: relative;
       margin: 0 82rpx;
       text-align: center;
+
       .ts-title-icon {
         position: absolute;
         top: -143rpx;
@@ -82,40 +70,45 @@
         width: 114rpx;
         height: 114rpx;
       }
+
       .ts-intro-title {
         margin-top: 86rpx;
         font-size: 44rpx;
       }
+
       .ts-intro-text {
         margin-top: 20rpx;
         font-size: 28rpx;
       }
+
       text {
         display: block;
         color: #999;
       }
     }
+
     .ts-other-info {
       margin: 120rpx 20rpx 70rpx 20rpx;
       font-size: 28rpx;
       color: #999;
+
       .ts-info-title {
         display: flex;
         align-content: flex-start;
         align-items: center;
         flex-direction: wrap;
+
         image {
           border-radius: 50%;
           width: 60rpx;
           height: 60rpx;
         }
+
         text {
-          margin-left: 10rpx;
-        }
-        .ts-name {
-          color: #5acbda;
+          margin-left: 20rpx;
         }
       }
+
       .ts-info-description {
         padding-top: 10rpx;
         overflow: hidden;
@@ -127,20 +120,26 @@
 
       }
     }
+
     .ts-basic-info {
       margin: 0 20rpx 100rpx;
+
       .ts-basic-item {
         position: relative;
         margin-bottom: 30rpx;
         padding-bottom: 30rpx;
         font-size: 28rpx;
         color: #999;
+
         text {
           display: block;
         }
+
         .ts-basic-title {
+          font-weight: 700;
           color: #5c5c5c;
         }
+
         .ts-basic-content {
           padding: 28rpx 0 0;
           display: -webkit-box;
@@ -148,12 +147,14 @@
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
+
         &:last-child::after {
           content: "";
           width: 0;
           height: 0;
         }
       }
+
       .ts-basic-item::after {
         content: "";
         position: absolute;
@@ -172,6 +173,7 @@
       }
     }
   }
+
   .ts-common-title {
     position: relative;
     border-top: 2rpx solid #e7ddc6;
@@ -180,6 +182,7 @@
     max-height: 46rpx;
     margin: 0 auto 28rpx;
     width: 67.6%;
+
     view {
       position: relative;
       font-size: 32rpx;
@@ -191,6 +194,7 @@
       display: inline-block;
       line-height: 42rpx;
       color: #999;
+
       text::before,
       text::after {
         content: "";
@@ -201,9 +205,11 @@
         height: 10rpx;
         border-radius: 10rpx;
       }
+
       text::before {
         right: 18rpx;
       }
+
       text::after {
         left: 18rpx;
       }
@@ -212,21 +218,17 @@
 </style>
 
 <template>
-  <scroll-view>
+  <scroll-view wx:if="{{loading}}">
     <view class="trip-scenic-wrap">
-      <view class="trip-scenic-header" style="background: url('http://photos.breadtrip.com/covers_2015_10_22_d4e479f2e7aea0079c50d1e761cba0d9.jpg?imageView/2/w/960/q/85') no-repeat; background-size: cover; background-positon: center center">
+      <view class="trip-scenic-header" style="background: url('{{placeInfo.hottest_places[0].photo}}') no-repeat; background-size: cover; background-positon: center center">
         <view class="mask-top"></view>
-        <view clas="mask-bottom"></view>
-        <view class="tc-header-icon">
-          <image src="../images/camera.png"></image>
-          <text>6139</text>
-        </view>
+        <view class="mask-bottom"></view>
       </view>
 
       <view class="trip-scenic-intro">
         <image class="ts-title-icon" src="../images/site.png"></image>
-        <text class="ts-intro-title">红场</text>
-        <text class="ts-intro-text">红场位于克林姆林宫东北面的围墙外，它一直是克林姆林宫的主人举行集会，庆祝活动和大阅兵的地方。</text>
+        <text class="ts-intro-title">{{placeInfo.name}}</text>
+        <text class="ts-intro-text">{{placeInfo.recommended_reason}}</text>
       </view>
 
       <view class="ts-other-info">
@@ -237,80 +239,54 @@
         </view>
 
         <view class="ts-other-list">
-          <view class="ts-info-item">
-            <view class="ts-info-title">
-              <image src="http://photos.breadtrip.com/avatar_68_d8_70e8b6aaa018f1ff0bdd8f307418212c50cf0a04.jpg-avatar.m"></image>
-              <text>下路一直叫我去</text>
-              <text>在</text>
-              <text class="ts-name">俄罗斯圣得堡旅行</text>
-              <text>的路上</text>
+			    <repeat for="{{tips}}" key="index" index="index" item="tip">
+            <view class="ts-info-item">
+              <view class="ts-info-title">
+                <image src="{{tip.user.avatar_m}}"></image>
+                <text>{{tip.user.name}}</text>
+              </view>
+              <view class="ts-info-description">
+                <text>{{tip.content}}</text>
+              </view>
             </view>
-            <view class="ts-info-description">
-              <text>二战纪念广场上的士兵换岗最具俄罗斯风格的教堂</text>
-            </view>
-          </view>
-
-          <view class="ts-info-item">
-            <view class="ts-info-title">
-              <image src="http://photos.breadtrip.com/avatar_68_d8_70e8b6aaa018f1ff0bdd8f307418212c50cf0a04.jpg-avatar.m"></image>
-              <text>下路一直叫我去</text>
-              <text>在</text>
-              <text class="ts-name">俄罗斯圣得堡旅行</text>
-              <text>的路上</text>
-            </view>
-            <view class="ts-info-description">
-              <text>
-                守卫换岗仪式
-                一小时一次换岗这张有点好看嘻嘻嘻嘻😝📢红场南北长695米，东西宽130米，总面积9.035万平方米，的北面为俄罗斯国家历史博物馆，
-                东面是莫斯科国立百货商场，南部为圣瓦西里大教堂。西侧是列宁墓和克里姆林宫的红墙及三座高塔，在列宁墓上层修建有主席台。每当俄罗斯重要仪式时，领导人就站在列宁墓上观礼阅兵。莫斯科中心
-                据说昨天的红场封闭不开放，今天才开。莫斯科大学的前身
-                现在是历史博物馆瓦西里升天教堂
-                因曾有一个名叫瓦西里的修士在此苦修，最终死于该教堂而得名。面包石
-                每一块砖都是立柱一样扎在地下的
-                仿佛能脑补出阅兵式坦克装甲车从这里碾压过去的场景（地面凹凸不平，母上担心踢正步的小哥哥们会崴脚😂）
-              </text>
-            </view>
-          </view>
-
-          <view class="ts-info-item">
-            <view class="ts-info-title">
-              <image src="http://photos.breadtrip.com/avatar_68_d8_70e8b6aaa018f1ff0bdd8f307418212c50cf0a04.jpg-avatar.m"></image>
-              <text>下路一直叫我去</text>
-              <text>在</text>
-              <text class="ts-name">俄罗斯圣得堡旅行</text>
-              <text>的路上</text>
-            </view>
-            <view class="ts-info-description">
-              <text>二战纪念广场上的士兵换岗最具俄罗斯风格的教堂</text>
-            </view>
-          </view>
-
+          </repeat>
         </view>
-
-
-
       </view>
-
       <view class="ts-basic-info">
         <view class="ts-common-title">
           <view>
             <text>基本信息</text>
           </view>
         </view>
-
-        <view class="ts-basic-item">
+        <view class="ts-basic-item" wx:if="{{placeInfo.description}}">
           <text class="ts-basic-title">概况</text>
-          <text class="ts-basic-content">红场(俄语：Кра́сная
-            пло́щадь)是特维尔区的一个公众广场，长400米、宽150米。红场曾经是毗邻中国城商业区的一个市场，后来成为历任克林姆林宫的主人们举行大型集会，如大阅兵的地方。现在这里也常常会举办各种音乐会及节日活动。
-            红场周围有许多著名的建筑，包括列宁墓、圣巴西尔大教堂和克里姆林宫。红场东边是国家百货商场，其隔壁有国家历史博物馆。
-            红场的名称（Krasnaya ploshchad）其实与共产主义没有关系，在古代俄语中，“krasny”是“美丽”的意思，只是到了20世纪它才逐渐带有“红色”的意思。</text>
+          <text class="ts-basic-content">{{placeInfo.description}}</text>
         </view>
-        <view class="ts-basic-item">
-          <text class="ts-basic-title">概况</text>
-          <text class="ts-basic-content">红场(俄语：Кра́сная
-            пло́щадь)是特维尔区的一个公众广场，长400米、宽150米。红场曾经是毗邻中国城商业区的一个市场，后来成为历任克林姆林宫的主人们举行大型集会，如大阅兵的地方。现在这里也常常会举办各种音乐会及节日活动。
-            红场周围有许多著名的建筑，包括列宁墓、圣巴西尔大教堂和克里姆林宫。红场东边是国家百货商场，其隔壁有国家历史博物馆。
-            红场的名称（Krasnaya ploshchad）其实与共产主义没有关系，在古代俄语中，“krasny”是“美丽”的意思，只是到了20世纪它才逐渐带有“红色”的意思。</text>
+        <view class="ts-basic-item" wx:if="{{placeInfo.address}}">
+          <text class="ts-basic-title">地址</text>
+          <text class="ts-basic-content">{{placeInfo.address}}</text>
+        </view>
+
+        <view class="ts-basic-item" wx:if="{{placeInfo.arrival_type}}">
+          <text class="ts-basic-title">到达方式</text>
+          <text class="ts-basic-content">{{placeInfo.arrival_type}}</text>
+        </view>
+
+        <view class="ts-basic-item" wx:if="{{placeInfo.opening_time}}">
+          <text class="ts-basic-title">开放时间</text>
+          <text class="ts-basic-content">{{placeInfo.opening_time}}</text>
+        </view>
+        <view class="ts-basic-item" wx:if="{{placeInfo.fee}}">
+          <text class="ts-basic-title">门票价格</text>
+          <text class="ts-basic-content">{{placeInfo.fee}}</text>
+        </view>
+        <view class="ts-basic-item" wx:if="{{placeInfo.tel}}">
+          <text class="ts-basic-title">联系方式</text>
+          <text class="ts-basic-content">{{placeInfo.tel}}</text>
+        </view>
+        <view class="ts-basic-item" wx:if="{{placeInfo.website}}">
+          <text class="ts-basic-title">官方网站</text>
+          <text class="ts-basic-content">{{placeInfo.website}}</text>
         </view>
       </view>
 
@@ -322,18 +298,38 @@
   import wepy from "wepy";
 
   import api from "../api/api";
+	import tip from '../util/tip';
 
   export default class TirpScenic extends wepy.page {
+    data = {
+      loading: false,
+      placeInfo: {},
+      tips: []
+    }
+
+    async getData(id) {
+      const self = this;
+			tip.loading();
+      let placeInfo = await api.getPlaceInfoByID({
+        query: {
+          id: id
+        }
+      });
+      let tips = await api.getPlaceTipsByID({
+        query: {
+            id: id
+          }
+      });
+      this.placeInfo = placeInfo.data;
+      this.tips = tips.data.data.tips;
+      this.loading = true;
+      this.$apply();
+      tip.loaded();
+    }
     onLoad(options) {
       const self = this;
       const id = options.id;
-      // api.getPlaceInfoByID({
-      //   query: {
-      //     id: id
-      //   }
-      // }).then(function (res) {
-      //   console.log(res);
-      // }) 
+      this.getData(2388362544);
     }
   }
 </script>
