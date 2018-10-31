@@ -3,7 +3,6 @@
     .trip-scenic-header {
       position: relative;
       height: 440rpx;
-
       .mask-top {
         position: absolute;
         padding-bottom: 20%;
@@ -14,7 +13,6 @@
         background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .4)), to(transparent));
         background-image: linear-gradient(180deg, rgba(0, 0, 0, .4), transparent);
       }
-
       .mask-bottom {
         position: absolute;
         padding-bottom: 31%;
@@ -30,7 +28,6 @@
       position: relative;
       padding-top: 30rpx;
       padding-bottom: 60rpx;
-
       &::after {
         content: "";
         position: absolute;
@@ -47,19 +44,16 @@
         transform: scale(.5);
         transform-origin: left top;
       }
-
       &:last-child::after {
         content: "";
         width: 0;
         height: 0;
       }
     }
-
     .trip-scenic-intro {
       position: relative;
       margin: 0 82rpx;
       text-align: center;
-
       .ts-title-icon {
         position: absolute;
         top: -143rpx;
@@ -70,45 +64,50 @@
         width: 114rpx;
         height: 114rpx;
       }
-
       .ts-intro-title {
         margin-top: 86rpx;
         font-size: 44rpx;
       }
-
+      .ts-place-star {
+        image {
+          width: 28rpx;
+          height: 26rpx;
+        }
+      }
       .ts-intro-text {
         margin-top: 20rpx;
         font-size: 28rpx;
       }
-
       text {
         display: block;
         color: #999;
       }
     }
-
     .ts-other-info {
       margin: 120rpx 20rpx 70rpx 20rpx;
       font-size: 28rpx;
       color: #999;
-
       .ts-info-title {
         display: flex;
         align-content: flex-start;
         align-items: center;
         flex-direction: wrap;
-
-        image {
+        .ts-user-avatar {
           border-radius: 50%;
           width: 60rpx;
           height: 60rpx;
         }
-
+        .score {
+          margin-left: 20rpx;
+        }
+        .icon-star {
+          width: 20rpx;
+          height: 20rpx;
+        }
         text {
           margin-left: 20rpx;
         }
       }
-
       .ts-info-description {
         padding-top: 10rpx;
         overflow: hidden;
@@ -117,29 +116,23 @@
         -webkit-line-clamp: 5;
         -webkit-box-orient: vertical;
         word-break: break-all;
-
       }
     }
-
     .ts-basic-info {
       margin: 0 20rpx 100rpx;
-
       .ts-basic-item {
         position: relative;
         margin-bottom: 30rpx;
         padding-bottom: 30rpx;
         font-size: 28rpx;
         color: #999;
-
         text {
           display: block;
         }
-
         .ts-basic-title {
           font-weight: 700;
           color: #5c5c5c;
         }
-
         .ts-basic-content {
           padding: 28rpx 0 0;
           display: -webkit-box;
@@ -147,14 +140,12 @@
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
-
         &:last-child::after {
           content: "";
           width: 0;
           height: 0;
         }
       }
-
       .ts-basic-item::after {
         content: "";
         position: absolute;
@@ -173,7 +164,6 @@
       }
     }
   }
-
   .ts-common-title {
     position: relative;
     border-top: 2rpx solid #e7ddc6;
@@ -182,7 +172,6 @@
     max-height: 46rpx;
     margin: 0 auto 28rpx;
     width: 67.6%;
-
     view {
       position: relative;
       font-size: 32rpx;
@@ -194,7 +183,6 @@
       display: inline-block;
       line-height: 42rpx;
       color: #999;
-
       text::before,
       text::after {
         content: "";
@@ -205,11 +193,9 @@
         height: 10rpx;
         border-radius: 10rpx;
       }
-
       text::before {
         right: 18rpx;
       }
-
       text::after {
         left: 18rpx;
       }
@@ -220,30 +206,45 @@
 <template>
   <scroll-view wx:if="{{loading}}">
     <view class="trip-scenic-wrap">
-      <view class="trip-scenic-header" style="background: url('{{placeInfo.hottest_places[0].photo}}') no-repeat; background-size: cover; background-positon: center center">
+      <view class="trip-scenic-header" style="background: url('{{placeInfo.hottest_places[0].photo}}') no-repeat; background-size: cover; background-positon: center center"
+        @tap="viewScenic({{placeInfo.id}})"
+      >
         <view class="mask-top"></view>
         <view class="mask-bottom"></view>
       </view>
-
       <view class="trip-scenic-intro">
         <image class="ts-title-icon" src="../images/site.png"></image>
         <text class="ts-intro-title">{{placeInfo.name}}</text>
-        <text class="ts-intro-text">{{placeInfo.recommended_reason}}</text>
+        <view class="ts-place-star">
+          <repeat for="{{placeStars}}" key="index" index="index" item="star">
+            <image class="place-star" src="../images/place_star.png"></image>
+          </repeat>
+          <repeat for="{{placeEmptyStars}}" key="index" index="index" item="star">
+            <image class="place-half-star" src="../images/place_half_star.png"></image>
+          </repeat>
+        </view>
+        <text class="ts-intro-text" wx:if="{{placeInfo.recommended_reason}}">{{placeInfo.recommended_reason}}</text>
       </view>
-
       <view class="ts-other-info">
         <view class="ts-common-title">
           <view>
             <text>面包旅行</text>
           </view>
         </view>
-
         <view class="ts-other-list">
-			    <repeat for="{{tips}}" key="index" index="index" item="tip">
+          <repeat for="{{tips}}" key="index" index="index" item="tip">
             <view class="ts-info-item">
               <view class="ts-info-title">
-                <image src="{{tip.user.avatar_m}}"></image>
+                <image class="ts-user-avatar" src="{{tip.user.avatar_m}}"></image>
                 <text>{{tip.user.name}}</text>
+                <view class="score">
+                  <repeat for="{{tip.stars}}" key="index" index="index" item="star">
+                    <image class="icon-star" src="../images/star.png"></image>
+                  </repeat>
+                  <repeat for="{{tip.emptyStars}}" key="index" index="index" item="star">
+                    <image class="icon-star" src="../images/empty_star.png"></image>
+                  </repeat>
+                </view>
               </view>
               <view class="ts-info-description">
                 <text>{{tip.content}}</text>
@@ -266,12 +267,10 @@
           <text class="ts-basic-title">地址</text>
           <text class="ts-basic-content">{{placeInfo.address}}</text>
         </view>
-
         <view class="ts-basic-item" wx:if="{{placeInfo.arrival_type}}">
           <text class="ts-basic-title">到达方式</text>
           <text class="ts-basic-content">{{placeInfo.arrival_type}}</text>
         </view>
-
         <view class="ts-basic-item" wx:if="{{placeInfo.opening_time}}">
           <text class="ts-basic-title">开放时间</text>
           <text class="ts-basic-content">{{placeInfo.opening_time}}</text>
@@ -289,7 +288,6 @@
           <text class="ts-basic-content">{{placeInfo.website}}</text>
         </view>
       </view>
-
     </view>
   </scroll-view>
 </template>
@@ -298,18 +296,28 @@
   import wepy from "wepy";
 
   import api from "../api/api";
-	import tip from '../util/tip';
+  import tip from '../util/tip';
 
   export default class TirpScenic extends wepy.page {
     data = {
       loading: false,
       placeInfo: {},
+      placeStars: [],
+      placeEmptyStars: [],
       tips: []
+    }
+
+    methods = {
+      viewScenic(id) {
+        wx.navigateTo({
+          url: `/pages/trip_photo?id=${id}`
+        });
+      }
     }
 
     async getData(id) {
       const self = this;
-			tip.loading();
+      tip.loading();
       let placeInfo = await api.getPlaceInfoByID({
         query: {
           id: id
@@ -317,19 +325,32 @@
       });
       let tips = await api.getPlaceTipsByID({
         query: {
-            id: id
-          }
+          id: id
+        }
       });
-      this.placeInfo = placeInfo.data;
-      this.tips = tips.data.data.tips;
-      this.loading = true;
-      this.$apply();
+      // 旅行地点的基本信息
+      self.placeInfo = placeInfo.data;
+      let placeRating = this.placeInfo.rating;
+      self.placeStars.length = Math.floor(this.placeInfo.rating);
+      self.placeEmptyStars.length = 5 - Math.floor(this.placeInfo.rating);
+
+      // 旅行地点的tips信息
+      self.tips = tips.data.data.tips;
+      self.tips.map((item) => {
+        let starCount = item.rating > 0 ? Math.floor(item.rating) : 5;
+        item.stars = [];
+        item.emptyStars = [];
+        item.stars.length = starCount;
+        item.emptyStars.length = Math.abs(5 - starCount);
+      });
+      self.loading = true;
+      self.$apply();
       tip.loaded();
     }
     onLoad(options) {
       const self = this;
       const id = options.id;
-      this.getData(2388362544);
+      self.getData(id);
     }
   }
 </script>

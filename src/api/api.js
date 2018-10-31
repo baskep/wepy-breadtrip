@@ -17,6 +17,10 @@ const getPlaceInfoByID = (params) => {
 const getPlaceTipsByID = (params) => {
   return wxRequest(params, `${apiURL}/place/pois/${params.query.id}/impressions/`);
 };
+// 通过ID获取地点照片信息，只有前20张
+const getPlacePhotosByID = (params) => {
+  return wxRequest(params, `${apiURL}/destination/place/5/${params.query.id}/photos/`);
+};
 const getPlacePOIByID = (params) => {
   return wxRequest(params, `${apiURL}/destination/place/${params.query.type}/${params.query.id}/pois/${params.query.poiType}/`);
 };
@@ -52,5 +56,6 @@ module.exports = {
   getWaypointInfoByID,
   getWaypointReplyByID,
   getPlacesByID,
-  getPlaceTipsByID
+  getPlaceTipsByID,
+  getPlacePhotosByID
 };

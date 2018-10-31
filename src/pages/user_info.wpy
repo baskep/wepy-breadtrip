@@ -1,0 +1,15 @@
+<style lang="less">
+
+</style>
+
+<template>
+	<text>这是一个测试页面</text>
+</template>
+
+<script>
+	import wepy from "wepy";
+
+	export default class UserInfo extends wepy.page {
+
+	}
+</script>

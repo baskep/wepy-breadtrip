@@ -11,11 +11,12 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-
+      'pages/user_info',
+      'pages/index',
+      'pages/trip_photo',
       'pages/trip_scenic',
       'pages/trip_place',
-      'pages/index',
-      'pages/trip_detail',
+      'pages/trip_detail'
     ],
     window: {
       backgroundTextStyle: 'dark',

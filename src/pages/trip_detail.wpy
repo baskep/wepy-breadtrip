@@ -33,8 +33,6 @@
 			loading: false
 		}
 
-		methods = {}
-
 		onLoad(options) {
 			const self = this;
 			const id = options.id;

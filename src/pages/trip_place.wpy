@@ -111,7 +111,7 @@
 </style>
 
 <template>
-	<scroll-view wx:if={{loading}}>
+	<scroll-view wx:if="{{loading}}">
 		<view class="trip-place-wrap">
 			<repeat for="{{tripPlaceInfo}}" key="index" index="index" item="tripDay">
 				<view class="trip-place-item">
@@ -122,7 +122,7 @@
 					<view class="wp-sep"></view>
 					<view class="trip-place-content">
 						<view class="trip-place-list">
-							<repeat wx:if="tripDay.places" for={{tripDay.places}} key="index" index="index" item="place">
+							<repeat wx:if="tripDay.places" for="{{tripDay.places}}" key="index" index="index" item="place">
 								<view class="trip-list-detail">
 									<view class="trip-list-city">
 										<view class="trip-city-info">
@@ -134,7 +134,7 @@
 										</view>
 									</view>
 									<view class="trip-area-wrap">
-										<repeat wx:if="place.pois" for={{place.pois}} key="index" index="index" item="poi">
+										<repeat wx:if="place.pois" for="{{place.pois}}" key="index" index="index" item="poi">
 											<view class="trip-list-area">
 												<view class="trip-area-info">
 													<image src="../images/road_sign.png"></image>
@@ -193,7 +193,7 @@
 			tip.loading();
 			api.getPlacesByID({
 				query: {
-					tripId: 2387386502
+					tripId: id
 				}
 			}).then(function (res) {
 				let result = res.data;

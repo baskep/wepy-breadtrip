@@ -23,6 +23,7 @@
     config = {
       navigationBarTitleText: '面包旅行'
     }
+    
     components = {
       tripItem: tripItem
     }
@@ -33,12 +34,6 @@
       windowWidth: 0,
       windowHeight: 0
     }
-
-    computed = {}
-
-    methods = {}
-
-    events = {}
 
     onLoad() {
       const userInfo = wepy.getSystemInfoSync();

@@ -1,0 +1,64 @@
+<style lang="less">
+	.trip-photo {
+		view {
+
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+		}
+		image {
+			width: 32.5%;
+			height: 240rpx;
+		}
+		image:nth-child(3n) {
+
+			margin-left: 1.25%;
+		}
+		image:nth-child(3n+2),
+		image:nth-child(3n) {
+
+			margin-left: 1.25%;
+		}
+	}
+</style><template>
+	<scroll-view>
+		<view class="trip-photo">
+			<repeat for="{{photos}}" key="index" index="index" item="photo">
+				<image src="{{photo.photo_s}}" @tap="viewTripDetail({{photo.trip_id}})"></image>
+			</repeat>
+		</view>
+	</scroll-view>
+</template>
+<script>
+	import wepy from "wepy";
+
+	import api from "../api/api";
+	import tip from '../util/tip';
+
+	export default class TripPhoto extends wepy.page {
+		data = {
+			photos: []
+		}
+		methods = {
+			viewTripDetail(id) {
+				wepy.navigateTo({
+					url: `/pages/trip_detail?id=${id}&name=''`
+				});
+			}
+		}
+
+		onLoad(options) {
+			const self = this;
+			const id = options.id;
+			api.getPlacePhotosByID({
+				query: {
+					id: id
+				}
+			}).then(function (res) {
+				self.photos = res.data.items;
+				self.$apply();
+			});
+		}
+	}
+</script>
