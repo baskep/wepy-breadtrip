@@ -35,6 +35,7 @@ const getPlaceTripByID = (params) => {
 const getPlacesByID = (params) => {
   return wxRequest(params, `${apiURL}/trips/${params.query.tripId}/schedule/`);
 };
+// 通过用户ID获取用户用户信息
 const getUserInfoByID = (params) => {
   return wxRequest(params, `${apiURL}/users/${params.query.userId}/v2`);
 };

@@ -1,93 +1,90 @@
 <style lang="less">
-	.user-info-header {
-		position: relative;
-		height: 596rpx;
-		.user-info-detail {
-			display: flex;
-			position: relative;
-			justify-content: space-between;
-			align-items: center;
-			margin: 0 auto;
-			padding-top: 144rpx;
-			width: 60%;
-			z-index: 3;
-			view {
-				text-align: center;
-				text {
-					display: block;
-					font-size: 30rpx;
-					color: hsla(0, 0%, 100%, .8);
-				}
-			}
-			.user-avatar {
-				text {
-					font-size: 36rpx !important;
-					color: #fff;
-				}
-			}
-		}
-		.user-avatar {
-			image {
-				border-radius: 50%;
-				width: 144rpx;
-				height: 144rpx;
-			}
-		}
-		.user-info-foucs {
-			position: relative;
-			margin-top: 60rpx;
-			color: #000;
-			text-align: center;
-			z-index: 3;
-			text {
-				border-radius: 50rpx;
-				padding: 10rpx 50rpx;
-				font-size: 28rpx;
-				background: #fff;
-			}
-		}
-		.user-info-mask {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(0, 0, 0, .6);
-			z-index: 2;
-		}
-	}
-	.user-info-content {
-		margin: 42rpx 20rpx 80rpx;
-		.content-title {
-			display: flex;
-			justify-content: space-between;	
-			.name {
-				font-size: 32rpx;
-				color: #5c5c5c;
-			}
-			.count {
-				border-radius: 20rpx;
-				padding: 0 14rpx;
-				font-size: 28rpx;
-				background: #e8dfc5;
-				color: #fff;
-			}
-		}
-	}
-
-
-	.trip-item {
+  .user-info-header {
     position: relative;
-    margin: 20rpx;
+    height: 596rpx;
+    .user-info-detail {
+      display: flex;
+      position: relative;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      padding-top: 144rpx;
+      width: 60%;
+      z-index: 3;
+      view {
+        text-align: center;
+        text {
+          display: block;
+          font-size: 30rpx;
+          color: hsla(0, 0%, 100%, .8);
+        }
+      }
+      .user-avatar {
+        text {
+          font-size: 36rpx !important;
+          color: #fff;
+        }
+      }
+    }
+    .user-avatar {
+      image {
+        border-radius: 50%;
+        width: 144rpx;
+        height: 144rpx;
+      }
+    }
+    .user-info-foucs {
+      position: relative;
+      margin-top: 60rpx;
+      color: #000;
+      text-align: center;
+      z-index: 3;
+      text {
+        border-radius: 50rpx;
+        padding: 10rpx 50rpx;
+        font-size: 28rpx;
+        background: #fff;
+      }
+    }
+    .user-info-mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .6);
+      z-index: 2;
+    }
+  }
+  .user-info-content {
+    margin: 42rpx 20rpx 80rpx;
+    .content-title {
+      display: flex;
+      justify-content: space-between;
+      .name {
+        font-size: 32rpx;
+        color: #5c5c5c;
+      }
+      .count {
+        border-radius: 20rpx;
+        padding: 0 14rpx;
+        font-size: 28rpx;
+        background: #e8dfc5;
+        color: #fff;
+      }
+    }
+  }
+  .user-trip {
+    position: relative;
     height: 352rpx;
-    .trip-item-img {
+    .user-trip-img {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 352rpx;
     }
-    .trip-item-info {
+    .user-trip-info {
       position: absolute;
       top: 0;
       left: 0;
@@ -99,7 +96,7 @@
       color: #fff;
       z-index: 2;
     }
-    .trip-item-title {
+    .user-trip-title {
       text {
         display: -webkit-box;
         margin-top: 15px;
@@ -113,7 +110,7 @@
         overflow: hidden;
       }
     }
-    .trip-item-basic {
+    .user-trip-basic {
       position: relative;
       margin-top: 6px;
       z-index: 2;
@@ -139,7 +136,7 @@
         }
       }
     }
-    .trip-author-info {
+    .user-like-info {
       position: absolute;
       left: 0;
       bottom: 11px;
@@ -160,7 +157,7 @@
         border-radius: 60rpx;
       }
       text {
-        margin: 0 20rpx;
+        margin: 0 6rpx;
         font-size: 24rpx;
       }
     }
@@ -180,67 +177,81 @@
 
 <template>
 
-	<scroll-view>
-		<view class="user-info-wrap">
-			<view class="user-info-header" style="background: url('http://photos.breadtrip.com/user_cover_2018_06_06_5c02413736ac505ec206fe061075ee839617574d.jpg-usercover.display') no-repeat; background-size: cover; background-position: center center">
-				<view class="user-info-detail">
-					<view class="user-fans">
-						<text>2912</text>
-						<text>粉丝</text>
-					</view>
-					<view class="user-avatar">
-						<image src="http://photos.breadtrip.com/avatar_ec_fe_7f18ca55184ab45552e072658d98ebb43d269457.jpg-avatar.m"></image>
-						<text>Frank_Yeung</text>
-					</view>
-					<view class="user-focus">
-						<text>14</text>
-						<text>关注</text>
-					</view>
-				</view>
-				<view class="user-info-foucs">
-					<text>关注</text>
-				</view>
-				<view class="user-info-mask"></view>
-			</view>
-			<view class="user-info-content">
-				<view class="content-title">
-					<text class="name">游记&故事集</text>
-					<text class="count">29</text>
-				</view>
-			</view>
-
-
-
-			 <view class="trip-item" data-id="{{trip.id}}" data-name="{{trip.name}}" @tap="viewTripDetail">
-        <image class="trip-item-img" src="http://photos.breadtrip.com/photo_2018_10_18_f8066c9c838b2451d35f5de140208743.jpg?imageView/2/w/1384/h/1384/q/85" mode="aspectFill" lazy-load="true"></image>
-        <view class="trip-item-info">
-          <view class="trip-item-title">
-            <text>Ciao, Italia🇮🇹</text>
+  <scroll-view>
+    <view class="user-info-wrap">
+      <view class="user-info-header" style="background: url('http://photos.breadtrip.com/user_cover_2018_06_06_5c02413736ac505ec206fe061075ee839617574d.jpg-usercover.display') no-repeat; background-size: cover; background-position: center center">
+        <view class="user-info-detail">
+          <view class="user-fans">
+            <text>2912</text>
+            <text>粉丝</text>
           </view>
-          <view class="trip-item-basic">
-            <view>
-              <text>2018.9.20</text>
-              <text>267足迹</text>
-            </view>
-            <view>
-              <text>{{trip.popular_place_str}}</text>
-            </view>
+          <view class="user-avatar">
+            <image src="http://photos.breadtrip.com/avatar_ec_fe_7f18ca55184ab45552e072658d98ebb43d269457.jpg-avatar.m"></image>
+            <text>Frank_Yeung</text>
+          </view>
+          <view class="user-focus">
+            <text>14</text>
+            <text>关注</text>
           </view>
         </view>
-        <view class="trip-author-info">
-          <image class="author-cover" src="{{trip.user.avatar_l}}"></image>
-          <text>{{trip.user.name}}</text>
+        <view class="user-info-foucs">
+          <text>关注</text>
         </view>
-        <view class="mask"></view>
+        <view class="user-info-mask"></view>
       </view>
-		</view>
-	</scroll-view>
+      <view class="user-info-content">
+        <view class="content-title">
+          <text class="name">游记&故事集</text>
+          <text class="count">29</text>
+        </view>
+        <view class="user-trip" data-id="{{trip.id}}" data-name="{{trip.name}}" @tap="viewTripDetail">
+          <image class="user-trip-img" src="http://photos.breadtrip.com/photo_2018_10_18_f8066c9c838b2451d35f5de140208743.jpg?imageView/2/w/1384/h/1384/q/85"
+            mode="aspectFill" lazy-load="true"></image>
+          <view class="user-trip-info">
+            <view class="user-trip-title">
+              <text>Ciao, Italia🇮🇹</text>
+            </view>
+            <view class="user-trip-basic">
+              <view>
+                <text>2018.9.20</text>
+                <text>14天</text>
+                <text>116足迹</text>
+              </view>
+            </view>
+          </view>
+          <view class="user-like-info">
+            <text>46116浏览</text>
+            <text>/</text>
+            <text>254喜欢</text>
+            <text>/</text>
+            <text>18评论</text>
+          </view>
+          <view class="mask"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
 </template>
 
 <script>
-	import wepy from "wepy";
+  import wepy from "wepy";
 
-	export default class UserInfo extends wepy.page {
+  import api from "../api/api";
+  import tip from "../util/tip";
 
-	}
+  export default class UserInfo extends wepy.page {
+    data = {
+      loading: false
+    }
+
+    onLoad() {
+      api.getUserInfoByID({
+        query: {
+          userId: 2387956730
+        }
+      }).then(function (res) {
+        console.log(res);
+      })
+    }
+  }
 </script>
