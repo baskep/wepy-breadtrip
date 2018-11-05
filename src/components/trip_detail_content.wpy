@@ -110,7 +110,7 @@
               <image class="time-img" src="../../images/time.png" lazy-load="true"></image>
               <text class="time">{{waypoint.local_time}}</text>
             </view>
-            <view wx:if="{{waypoint.country}}" class="city" @tap="viewScenic({{waypoint.poi.id}})">
+            <view wx:if="{{waypoint.country}}" class="city">
               <image class="city-img" src="../../images/location.png"></image>
               {{waypoint.country}} {{waypoint.city}}
             </view>
@@ -146,13 +146,7 @@
 
     computed = {}
 
-    methods = {
-      viewScenic(id) {
-				wx.navigateTo({
-					url: `/pages/trip_scenic?id=${id}`
-				});
-			}
-    }
+    methods = {}
 
     events = {}
 
