@@ -2,7 +2,6 @@
   .user-info-header {
     position: relative;
     height: 596rpx;
-
     .user-info-detail {
       display: flex;
       position: relative;
@@ -22,7 +21,6 @@
           color: hsla(0, 0%, 100%, .8);
         }
       }
-
       .user-avatar {
         text {
           font-size: 36rpx !important;
@@ -30,7 +28,6 @@
         }
       }
     }
-
     .user-avatar {
       image {
         border-radius: 50%;
@@ -38,14 +35,12 @@
         height: 144rpx;
       }
     }
-
     .user-info-foucs {
       position: relative;
       margin-top: 60rpx;
       color: #000;
       text-align: center;
       z-index: 3;
-
       text {
         border-radius: 50rpx;
         padding: 10rpx 50rpx;
@@ -53,7 +48,6 @@
         background: #fff;
       }
     }
-
     .user-info-mask {
       position: absolute;
       top: 0;
@@ -76,7 +70,6 @@
         font-size: 32rpx;
         color: #5c5c5c;
       }
-
       .count {
         border-radius: 20rpx;
         padding: 0 14rpx;
@@ -90,7 +83,6 @@
 
   .trip-item {
     position: relative;
-    margin: 20rpx;
     height: 352rpx;
 
     .trip-item-img {
@@ -220,6 +212,14 @@
             <text>{{userInfo.followings_count}}</text>
             <text>关注</text>
           </view>
+          <view class="user-like-info">
+            <text>46116浏览</text>
+            <text>/</text>
+            <text>254喜欢</text>
+            <text>/</text>
+            <text>18评论</text>
+          </view>
+          <view class="mask"></view>
         </view>
         <view class="user-info-foucs">
           <text>关注</text>
@@ -287,11 +287,10 @@
     }
     onLoad() {
       const self = this;
-      // const id = options.id;
-
+      const id = options.id;
       api.getUserInfoByID({
         query: {
-          userId: 2388503714
+          userId: id
         }
       }).then(function (res) {
         tip.loading();
