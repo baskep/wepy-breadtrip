@@ -11,10 +11,8 @@
       padding-top: 144rpx;
       width: 60%;
       z-index: 3;
-
       view {
         text-align: center;
-
         text {
           display: block;
           font-size: 30rpx;
@@ -58,14 +56,11 @@
       z-index: 2;
     }
   }
-
   .user-info-content {
     margin: 42rpx 20rpx 80rpx;
-
     .content-title {
       display: flex;
       justify-content: space-between;
-
       .name {
         font-size: 32rpx;
         color: #5c5c5c;
@@ -79,12 +74,10 @@
       }
     }
   }
-
-
   .trip-item {
     position: relative;
+    margin:0 20rpx 20rpx;
     height: 352rpx;
-
     .trip-item-img {
       position: absolute;
       top: 0;
@@ -92,7 +85,6 @@
       width: 100%;
       height: 352rpx;
     }
-
     .trip-item-info {
       position: absolute;
       top: 0;
@@ -105,7 +97,6 @@
       color: #fff;
       z-index: 2;
     }
-
     .trip-item-title {
       text {
         display: -webkit-box;
@@ -120,12 +111,10 @@
         overflow: hidden;
       }
     }
-
     .trip-item-basic {
       position: relative;
       margin-top: 6px;
       z-index: 2;
-
       &::before {
         content: "";
         position: absolute;
@@ -137,21 +126,17 @@
         border-radius: 1px;
         background: #4abdcc;
       }
-
       view {
         margin-left: 20rpx;
         font-size: 24rpx;
       }
-
       text {
         margin-left: 20rpx;
-
         &:first-child {
           margin-left: 0;
         }
       }
     }
-
     .trip-author-info {
       position: absolute;
       left: 0;
@@ -165,7 +150,6 @@
       height: 68rpx;
       color: #fff;
       z-index: 2;
-
       .author-cover {
         width: 60rpx;
         height: 60rpx;
@@ -173,14 +157,12 @@
         background-size: 60rpx 60rpx;
         border-radius: 60rpx;
       }
-
       text {
         margin: 0 6rpx;
         font-size: 24rpx;
       }
     }
   }
-
   .mask {
     position: absolute;
     left: 0;
@@ -212,14 +194,6 @@
             <text>{{userInfo.followings_count}}</text>
             <text>关注</text>
           </view>
-          <view class="user-like-info">
-            <text>46116浏览</text>
-            <text>/</text>
-            <text>254喜欢</text>
-            <text>/</text>
-            <text>18评论</text>
-          </view>
-          <view class="mask"></view>
         </view>
         <view class="user-info-foucs">
           <text>关注</text>
@@ -285,7 +259,7 @@
         });
       }
     }
-    onLoad() {
+    onLoad(options) {
       const self = this;
       const id = options.id;
       api.getUserInfoByID({

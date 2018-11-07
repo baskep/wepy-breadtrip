@@ -45,59 +45,24 @@ function formatMileage (data) {
   return Math.floor(data / 1000);
 };
 
-// // 浮点型除法
-// function div(a, b) {
-//   let c, d, e, f
-//   try {
-//     e = a.toString().split('.')[1].length
-//   } catch (g) {}
-//   try {
-//     f = b.toString().split('.')[1].length
-//   } catch (g) {}
-//   // [eslint] Return statement should not contain assignment. (no-return-assign)
-//   c = Number(a.toString().replace('.', ''))
-//   d = Number(b.toString().replace('.', ''))
-//   return mul(c / d, Math.pow(10, f - e))
-// }
-
-// // 浮点型加法函数
-// function accAdd(arg1, arg2) {
-//   let r1, r2, m
-//   try {
-//     r1 = arg1.toString().split('.')[1].length
-//   } catch (e) {
-//     r1 = 0
-//   }
-//   try {
-//     r2 = arg2.toString().split('.')[1].length
-//   } catch (e) {
-//     r2 = 0
-//   }
-//   m = Math.pow(10, Math.max(r1, r2))
-//   return ((arg1 * m + arg2 * m) / m).toFixed(2)
-// }
-
-// // 浮点型乘法
-// function mul(a, b) {
-//   let c = 0
-//   let d = a.toString()
-//   let e = b.toString()
-//   try {
-//     c += a.toString().split('.')[1].length
-//   } catch (f) {}
-//   try {
-//     c += b.toString().split('.')[1].length
-//   } catch (f) {}
-//   return Number(d.replace('.', '')) * Number(e.replace('.', '')) / Math.pow(10, c)
-// }
-
-// //  去除字符串所有空格
-// function sTrim(text) {
-//   return text.replace(/\s/g, '')
-// }
+// 获取当前时间
+function getCurrentTime() {
+  let keep = ''
+  let date = new Date()
+  let y = date.getFullYear()
+  let m = date.getMonth() + 1
+  m = m < 10 ? '0' + m : m
+  let d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+  let h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+  let f = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+  let s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+  keep = y + '' + m + '' + d + '' + h + '' + f + '' + s
+  return keep // 20160614134947
+}
 
 module.exports = {
   wxRequest: wxRequest,
   formatTime: formatTime,
-  formatMileage: formatMileage
+  formatMileage: formatMileage,
+  getCurrentTime, getCurrentTime
 }

@@ -116,7 +116,7 @@
 <template>
 	<view class="trip-header-info">
 		<view class="th-user-info">
-			<image class="th-user-avatar" src="{{tripDetail.cover_image}}" lazy-load="true">
+			<image class="th-user-avatar" src="{{tripDetail.cover_image}}" lazy-load="true" @tap="viewUserInfo({{tripDetail.user.id}})">
 			</image>
 			<view class="th-user-name">
 				by <text>{{tripDetail.user.name}}</text>
@@ -206,6 +206,11 @@
 			viewAllPlace(id) {
 				wepy.navigateTo({
 					url: `/pages/trip_place?id=${id}`
+				});
+			},
+			viewUserInfo(id) {
+				wepy.navigateTo({
+					url: `/pages/user_info?id=${id}`
 				});
 			}
 		}

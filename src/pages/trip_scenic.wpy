@@ -235,7 +235,7 @@
           <repeat for="{{tips}}" key="index" index="index" item="tip">
             <view class="ts-info-item">
               <view class="ts-info-title">
-                <image class="ts-user-avatar" src="{{tip.user.avatar_m}}"></image>
+                <image class="ts-user-avatar" src="{{tip.user.avatar_m}}" @tap="viewUserInfo({{tip.user.id}})"></image>
                 <text>{{tip.user.name}}</text>
                 <view class="score">
                   <repeat for="{{tip.stars}}" key="index" index="index" item="star">
@@ -311,6 +311,11 @@
       viewScenic(id) {
         wx.navigateTo({
           url: `/pages/trip_photo?id=${id}`
+        });
+      },
+      viewUserInfo(id) {
+        wepy.navigateTo({
+          url: `/pages/user_info?id=${id}`
         });
       }
     }

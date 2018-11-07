@@ -121,7 +121,7 @@
             </view>
           </view>
         </view>
-        <view class="trip-author-info">
+        <view class="trip-author-info" @tap="viewUserInfo({{trip.user.id}})">
           <image class="author-cover" src="{{trip.user.avatar_l}}"></image>
           <text>{{trip.user.name}}</text>
         </view>
@@ -153,11 +153,12 @@
         wepy.navigateTo({
           url: `/pages/trip_detail?id=${dataset.id}&name=${dataset.name}`
         });
+      },
+      viewUserInfo(id) {
+				wepy.navigateTo({
+          url: `/pages/user_info?id=${id}`
+        });
       }
     }
-
-    events = {}
-
-    onLoad() {}
   }
 </script>

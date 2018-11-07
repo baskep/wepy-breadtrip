@@ -1,11 +1,9 @@
 <style lang="less">
 	.trip-photo {
 		view {
-
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-
 		}
 		image {
 			width: 32.5%;
