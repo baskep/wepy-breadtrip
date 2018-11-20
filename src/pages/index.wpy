@@ -42,6 +42,10 @@
       this.getData();
     }
 
+    onShareAppMessage(res) {
+      console.log(1111);
+    }
+
     getData(e, needRefresh) {
       const self = this;
       const data = {
