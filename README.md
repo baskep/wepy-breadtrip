@@ -13,3 +13,7 @@ npm run dev
 
 3.使用微信开发者工具将dist目录添加进去即可看到效果
 ```
+
+## 项目截图
+
+   ![image](https://github.com/zt14362/MovieWebSite/raw/master/example/movieIndex.png) <br>
