@@ -5,11 +5,11 @@
 ## 项目运行
 
 ``` bash
-
-# install dependencies
+1.进入项目根目录，安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+2.启动编译
 npm run dev
 
+3.使用微信开发者工具将dist目录添加进去即可看到效果
 ```
