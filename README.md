@@ -23,4 +23,4 @@ npm run dev
 ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture6.png) 
 
 ## 本地调试或开发建议将微信小程序开发者工具的配置项进行以下勾选
-![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/config.png) 
+![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/config1.png) 
