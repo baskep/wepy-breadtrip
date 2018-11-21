@@ -24,3 +24,6 @@ npm run dev
 
 ### 本地调试或开发建议将微信小程序开发者工具的配置项进行以下勾选
 ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/config1.png) 
+
+### 项目灵感来源
+https://github.com/romoo/weapp-demo-breadtrip
