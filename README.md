@@ -16,8 +16,10 @@ npm run dev
 
 ## 项目截图
 ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture1.png) 
-  ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture2.png) <br>
+![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture2.png) 
 ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture3.png) 
-  ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture4.png) <br>
-  ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture5.png) 
-![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture6.png) <br>
+![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture4.png) 
+![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture5.png) 
+![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture6.png) 
+
+## 本地调试或开发建议将微信小程序开发者工具的配置项进行以下勾选
