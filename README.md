@@ -12,6 +12,8 @@ npm install
 npm run dev
 
 3.使用微信开发者工具将dist目录添加进去即可看到效果
+ 
+4.本地调试建议将微信开发者工具 -> 详情 "不检查合法域名"勾选上
 ```
 
 ### 项目截图
@@ -21,6 +23,3 @@ npm run dev
 ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture4.png) 
 ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture5.png) 
 ![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/picture6.png) 
-
-### 本地调试或开发建议将微信小程序开发者工具的配置项进行以下勾选
-![image](https://github.com/zt14362/wepy-breadtrip/blob/master/images/config1.png) 
